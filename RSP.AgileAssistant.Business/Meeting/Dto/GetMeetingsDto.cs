@@ -9,8 +9,8 @@ namespace RSP.AgileAssistant.Business.Meeting.Dto
     public class GetMeetingsDto : DtoBase
     {
         /// <summary>
-        /// When <c>true</c>, only meetings with <c>IsRunning == true</c> are
-        /// returned. Defaults to <c>true</c> to match the join-meeting dropdown.
+        /// When <c>true</c>, only active meetings are returned. Defaults to
+        /// <c>true</c> to match the join-meeting dropdown.
         /// </summary>
         public bool RunningOnly { get; set; } = true;
 

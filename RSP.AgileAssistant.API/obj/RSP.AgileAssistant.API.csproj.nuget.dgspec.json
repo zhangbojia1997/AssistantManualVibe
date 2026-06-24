@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "d:\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj": {}
+    "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj": {}
   },
   "projects": {
-    "d:\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj": {
+    "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj",
+        "projectUniqueName": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj",
         "projectName": "RSP.AgileAssistant.API",
-        "projectPath": "d:\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj",
+        "projectPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj",
         "packagesPath": "C:\\Users\\Galaxy_Zhang\\.nuget\\packages\\",
-        "outputPath": "d:\\AssistantManualVibe\\RSP.AgileAssistant.API\\obj\\",
+        "outputPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "d:\\AssistantManualVibe\\NuGet.Config",
+          "d:\\VibeAgileAssistant\\AssistantManualVibe\\NuGet.Config",
           "C:\\Users\\Galaxy_Zhang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -35,8 +35,8 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "d:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj": {
-                "projectPath": "d:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj"
+              "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj": {
+                "projectPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj"
               }
             }
           }
@@ -86,20 +86,20 @@
         }
       }
     },
-    "d:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj": {
+    "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj",
+        "projectUniqueName": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj",
         "projectName": "RSP.AgileAssistant.Business",
-        "projectPath": "d:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj",
+        "projectPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj",
         "packagesPath": "C:\\Users\\Galaxy_Zhang\\.nuget\\packages\\",
-        "outputPath": "d:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\obj\\",
+        "outputPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "d:\\AssistantManualVibe\\NuGet.Config",
+          "d:\\VibeAgileAssistant\\AssistantManualVibe\\NuGet.Config",
           "C:\\Users\\Galaxy_Zhang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

@@ -33,8 +33,8 @@ namespace RSP.AgileAssistant.Business.Meeting
                 Groups = new List<string>(bo.Groups),
                 JiraConnected = bo.JiraConnected,
                 CreatedOn = bo.CreatedOn,
-                IsEnded = !bo.IsRunning,
-                IsRunning = bo.IsRunning,
+                IsEnded = bo.Status != MeetingBo.StatusRunning,
+                Status = bo.Status,
             };
         }
 

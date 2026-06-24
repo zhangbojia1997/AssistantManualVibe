@@ -3,9 +3,9 @@
 -- Mirrors ER diagram 2.3.2 of the front/back-end technical design.
 -- All GUIDs are stored as NVARCHAR(36) strings; every foreign key uses
 -- ON DELETE CASCADE so deleting a meeting cleans up its children.
--- The Vibe_Meeting_Table carries an IsRunning flag used by the polling model:
--- true while the meeting is active, false once the host leaves, the meeting is
--- deleted, ended or expires. The "join" dropdown only lists IsRunning meetings.
+-- The Vibe_Meeting_Table carries a Status flag used by the polling model:
+-- 1 while the meeting is active, 0 once the host leaves, the meeting is
+-- deleted, ended or expires. The "join" dropdown only lists Status = 1 meetings.
 -- =============================================================================
 
 -- ----------------------------------------------------------------------------
@@ -21,7 +21,7 @@ BEGIN
         DeckId          NVARCHAR(36)    NOT NULL,
         VotingOn        NVARCHAR(36)    NULL,
         VotingRound     NVARCHAR(36)    NULL,
-        IsRunning       BIT             NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_IsRunning DEFAULT (1),
+        Status          INT             NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_Status DEFAULT (1),
         LastActiveDate  DATETIME2(7)    NOT NULL,
         JiraEmail       NVARCHAR(MAX)   NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_JiraEmail DEFAULT (''),
         JiraToken       NVARCHAR(MAX)   NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_JiraToken DEFAULT (''),
@@ -29,6 +29,28 @@ BEGIN
         CreatedOn       BIGINT          NOT NULL,
         CONSTRAINT PK_Vibe_Meeting_Table PRIMARY KEY NONCLUSTERED (Id)
     );
+END
+GO
+
+-- Migration: add Status to pre-existing Vibe_Meeting_Table instances that
+-- were created before the column was introduced. Prevents "Invalid column
+-- name 'Status'." errors at runtime and backfills from the legacy IsRunning
+-- column when it exists.
+IF NOT EXISTS (
+    SELECT 1 FROM sys.columns
+    WHERE object_id = OBJECT_ID('Vibe_Meeting_Table') AND name = 'Status')
+BEGIN
+    ALTER TABLE Vibe_Meeting_Table
+        ADD Status INT NOT NULL
+            CONSTRAINT DF_Vibe_Meeting_Table_Status DEFAULT (1);
+
+    IF EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID('Vibe_Meeting_Table') AND name = 'IsRunning')
+    BEGIN
+        UPDATE Vibe_Meeting_Table
+        SET Status = CASE WHEN IsRunning = 1 THEN 1 ELSE 0 END;
+    END
 END
 GO
 

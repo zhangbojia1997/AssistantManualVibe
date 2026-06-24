@@ -10,6 +10,16 @@ namespace RSP.AgileAssistant.Business.Meeting.Bo
     public class MeetingBo
     {
         /// <summary>
+        /// Meeting status value used for active sessions.
+        /// </summary>
+        public const int StatusRunning = 1;
+
+        /// <summary>
+        /// Meeting status value used for ended sessions.
+        /// </summary>
+        public const int StatusEnded = 0;
+
+        /// <summary>
         /// Unique identifier of the meeting.
         /// </summary>
         public Guid Id { get; set; }
@@ -40,11 +50,10 @@ namespace RSP.AgileAssistant.Business.Meeting.Bo
         public Guid? VotingRound { get; set; }
 
         /// <summary>
-        /// Indicates whether the meeting is currently running. Drives the polling
-        /// model: cleared when the host leaves, the meeting is deleted, ended or
-        /// expires.
+        /// Status of the meeting. The value is stored as an integer so the
+        /// physical model can distinguish active and ended sessions.
         /// </summary>
-        public bool IsRunning { get; set; } = true;
+        public int Status { get; set; } = StatusRunning;
 
         /// <summary>
         /// Timestamp of the most recent activity, in UTC.

@@ -10343,17 +10343,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AssistantManualVibe\\RSP.AgileAssistant.Business.Test\\RSP.AgileAssistant.Business.Test.csproj",
+      "projectUniqueName": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business.Test\\RSP.AgileAssistant.Business.Test.csproj",
       "projectName": "RSP.AgileAssistant.Business.Test",
-      "projectPath": "D:\\AssistantManualVibe\\RSP.AgileAssistant.Business.Test\\RSP.AgileAssistant.Business.Test.csproj",
+      "projectPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business.Test\\RSP.AgileAssistant.Business.Test.csproj",
       "packagesPath": "C:\\Users\\Galaxy_Zhang\\.nuget\\packages\\",
-      "outputPath": "D:\\AssistantManualVibe\\RSP.AgileAssistant.Business.Test\\obj\\",
+      "outputPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "D:\\AssistantManualVibe\\NuGet.Config",
+        "d:\\VibeAgileAssistant\\AssistantManualVibe\\NuGet.Config",
         "C:\\Users\\Galaxy_Zhang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -10371,8 +10371,8 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj": {
-              "projectPath": "D:\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj"
+            "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj": {
+              "projectPath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.Business\\RSP.AgileAssistant.Business.csproj"
             }
           }
         }

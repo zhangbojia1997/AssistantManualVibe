@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E/TtAggDBpw=",
+  "dgSpecHash": "915GpHktsCg=",
   "success": true,
-  "projectFilePath": "d:\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj",
+  "projectFilePath": "d:\\VibeAgileAssistant\\AssistantManualVibe\\RSP.AgileAssistant.API\\RSP.AgileAssistant.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Galaxy_Zhang\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Galaxy_Zhang\\.nuget\\packages\\azure.core.amqp\\1.3.1\\azure.core.amqp.1.3.1.nupkg.sha512",

@@ -60,7 +60,7 @@ namespace RSP.AgileAssistant.Business.Meeting.Actions
                     HostId = claim.UserId,
                     Topic = this._dto.Topic,
                     DeckId = this._dto.DeckId,
-                    IsRunning = true,
+                    Status = MeetingBo.StatusRunning,
                     LastActiveDate = now,
                     CreatedOn = new DateTimeOffset(now).ToUnixTimeMilliseconds(),
                     Groups = this._dto.Groups ?? new System.Collections.Generic.List<string>(),

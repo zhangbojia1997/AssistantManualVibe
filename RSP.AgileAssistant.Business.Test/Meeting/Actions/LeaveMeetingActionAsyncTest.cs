@@ -63,7 +63,7 @@ namespace RSP.AgileAssistant.Business.Test.Meeting.Actions
 
             IUnitTestCondition<LeaveMeetingActionAsync>[] conditions = new IUnitTestCondition<LeaveMeetingActionAsync>[]
             {
-                new MeetingRunningCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), false),
+                new MeetingStatusCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), 0),
                 new ParticipantExistsCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), "host", false),
             };
 
@@ -102,7 +102,7 @@ namespace RSP.AgileAssistant.Business.Test.Meeting.Actions
 
             IUnitTestCondition<LeaveMeetingActionAsync>[] conditions = new IUnitTestCondition<LeaveMeetingActionAsync>[]
             {
-                new MeetingRunningCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), true),
+                new MeetingStatusCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), 1),
                 new ParticipantExistsCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), "guest", false),
                 new ParticipantExistsCondition<LeaveMeetingActionAsync>(ado, meetingId.ToString(), "host", true),
             };

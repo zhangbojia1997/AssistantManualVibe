@@ -7,34 +7,34 @@ using RSP.Common.UnitTest;
 namespace RSP.AgileAssistant.Business.Test.UnitTestConditions
 {
     /// <summary>
-    /// Verifies a meeting's running flag.
+    /// Verifies a meeting's status code.
     /// </summary>
     /// <typeparam name="TAction">Action under test.</typeparam>
-    internal sealed class MeetingRunningCondition<TAction> : IUnitTestCondition<TAction>
+    internal sealed class MeetingStatusCondition<TAction> : IUnitTestCondition<TAction>
     {
         private readonly IADOConfigurable _adoConfigurable;
 
         private readonly string _meetingId;
 
-        private readonly bool _expectedRunning;
+        private readonly int _expectedStatus;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MeetingRunningCondition{TAction}"/> class.
+        /// Initializes a new instance of the <see cref="MeetingStatusCondition{TAction}"/> class.
         /// </summary>
         /// <param name="adoConfigurable">Database configuration.</param>
         /// <param name="meetingId">Meeting identifier to check.</param>
-        /// <param name="expectedRunning">Expected running flag.</param>
-        public MeetingRunningCondition(IADOConfigurable adoConfigurable, string meetingId, bool expectedRunning)
+        /// <param name="expectedStatus">Expected status code.</param>
+        public MeetingStatusCondition(IADOConfigurable adoConfigurable, string meetingId, int expectedStatus)
         {
             this._adoConfigurable = adoConfigurable;
             this._meetingId = meetingId;
-            this._expectedRunning = expectedRunning;
+            this._expectedStatus = expectedStatus;
         }
 
         /// <summary>
         /// Human-readable description used when the condition fails.
         /// </summary>
-        public string Condition => $"Meeting '{this._meetingId}' IsRunning == {this._expectedRunning}";
+        public string Condition => $"Meeting '{this._meetingId}' Status == {this._expectedStatus}";
 
         /// <summary>
         /// Executes the verification against the test database.
@@ -44,8 +44,8 @@ namespace RSP.AgileAssistant.Business.Test.UnitTestConditions
             using SqlConnection connection = new SqlConnection(this._adoConfigurable.ConnectionString);
             connection.Open();
             int matches = connection.ExecuteScalar<int>(
-                "SELECT COUNT(1) FROM Vibe_Meeting_Table WHERE Id = @Id AND IsRunning = @IsRunning;",
-                new { Id = this._meetingId, IsRunning = this._expectedRunning });
+                "SELECT COUNT(1) FROM Vibe_Meeting_Table WHERE Id = @Id AND Status = @Status;",
+                new { Id = this._meetingId, Status = this._expectedStatus });
 
             return matches == 1;
         }

@@ -66,7 +66,7 @@ namespace RSP.AgileAssistant.Business.Meeting.Actions
 
                 if (isHost)
                 {
-                    meeting.IsRunning = false;
+                    meeting.Status = MeetingBo.StatusEnded;
                     meeting.Participants.Clear();
                 }
                 else if (participant != null)

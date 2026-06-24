@@ -20,7 +20,7 @@ namespace RSP.AgileAssistant.Business.Meeting.Sql
 
         /// <summary>Selects a single meeting (root row) by identifier.</summary>
         internal const string SelectMeetingById = @"
-SELECT Id, HostId, Topic, DeckId, VotingOn, VotingRound, IsRunning,
+SELECT Id, HostId, Topic, DeckId, VotingOn, VotingRound, Status,
        LastActiveDate, JiraEmail, JiraToken, JiraConnected, CreatedOn
 FROM Vibe_Meeting_Table
 WHERE Id = @Id";
@@ -35,7 +35,7 @@ ORDER BY CreatedOn DESC";
         internal const string SelectRunningMeetingIds = @"
 SELECT Id
 FROM Vibe_Meeting_Table
-WHERE IsRunning = 1
+WHERE Status = 1
 ORDER BY CreatedOn DESC";
 
         /// <summary>Selects the groups of a meeting.</summary>
@@ -91,9 +91,9 @@ WHERE t.MeetingId = @MeetingId";
         /// <summary>Inserts a meeting (root row).</summary>
         internal const string InsertMeeting = @"
 INSERT INTO Vibe_Meeting_Table
-    (Id, HostId, Topic, DeckId, VotingOn, VotingRound, IsRunning, LastActiveDate, JiraEmail, JiraToken, JiraConnected, CreatedOn)
+    (Id, HostId, Topic, DeckId, VotingOn, VotingRound, Status, LastActiveDate, JiraEmail, JiraToken, JiraConnected, CreatedOn)
 VALUES
-    (@Id, @HostId, @Topic, @DeckId, @VotingOn, @VotingRound, @IsRunning, @LastActiveDate, @JiraEmail, @JiraToken, @JiraConnected, @CreatedOn)";
+    (@Id, @HostId, @Topic, @DeckId, @VotingOn, @VotingRound, @Status, @LastActiveDate, @JiraEmail, @JiraToken, @JiraConnected, @CreatedOn)";
 
         /// <summary>Inserts a meeting group.</summary>
         internal const string InsertGroup = @"
@@ -140,10 +140,10 @@ VALUES (@Id1, @Id2)";
         // UPDATE / DELETE statements
         // -------------------------------------------------------------------
 
-        /// <summary>Updates a meeting's running flag and activity timestamp.</summary>
-        internal const string UpdateIsRunning = @"
+        /// <summary>Updates a meeting's status and activity timestamp.</summary>
+        internal const string UpdateStatus = @"
 UPDATE Vibe_Meeting_Table
-SET IsRunning = @IsRunning, LastActiveDate = @LastActiveDate
+    SET Status = @Status, LastActiveDate = @LastActiveDate
 WHERE Id = @Id";
 
         /// <summary>
@@ -190,7 +190,7 @@ SELECT COUNT(1) FROM Vibe_Meeting_Table WHERE Id = @Id";
                 new SqlParameter("@DeckId", SqlDbType.NVarChar, 36) { Value = meeting.DeckId.ToString() },
                 new SqlParameter("@VotingOn", SqlDbType.NVarChar, 36) { Value = (object?)meeting.VotingOn?.ToString() ?? DBNull.Value },
                 new SqlParameter("@VotingRound", SqlDbType.NVarChar, 36) { Value = (object?)meeting.VotingRound?.ToString() ?? DBNull.Value },
-                new SqlParameter("@IsRunning", SqlDbType.Bit) { Value = meeting.IsRunning },
+                new SqlParameter("@Status", SqlDbType.Int) { Value = meeting.Status },
                 new SqlParameter("@LastActiveDate", SqlDbType.DateTime2) { Value = meeting.LastActiveDate },
                 new SqlParameter("@JiraEmail", SqlDbType.NVarChar) { Value = (object?)meeting.JiraEmail ?? string.Empty },
                 new SqlParameter("@JiraToken", SqlDbType.NVarChar) { Value = (object?)meeting.JiraToken ?? string.Empty },
@@ -297,13 +297,13 @@ SELECT COUNT(1) FROM Vibe_Meeting_Table WHERE Id = @Id";
             };
         }
 
-        /// <summary>Builds parameters for <see cref="UpdateIsRunning"/>.</summary>
-        internal static DbParameter[] UpdateIsRunningParameters(Guid id, bool isRunning, DateTime lastActiveDate)
+        /// <summary>Builds parameters for <see cref="UpdateStatus"/>.</summary>
+        internal static DbParameter[] UpdateStatusParameters(Guid id, int status, DateTime lastActiveDate)
         {
             return new DbParameter[]
             {
                 new SqlParameter("@Id", SqlDbType.NVarChar, 36) { Value = id.ToString() },
-                new SqlParameter("@IsRunning", SqlDbType.Bit) { Value = isRunning },
+                new SqlParameter("@Status", SqlDbType.Int) { Value = status },
                 new SqlParameter("@LastActiveDate", SqlDbType.DateTime2) { Value = lastActiveDate },
             };
         }
@@ -323,7 +323,7 @@ SELECT COUNT(1) FROM Vibe_Meeting_Table WHERE Id = @Id";
                 DeckId = row["DeckId"] == DBNull.Value ? Guid.Empty : Guid.Parse((string)row["DeckId"]),
                 VotingOn = row["VotingOn"] == DBNull.Value ? null : Guid.Parse((string)row["VotingOn"]),
                 VotingRound = row["VotingRound"] == DBNull.Value ? null : Guid.Parse((string)row["VotingRound"]),
-                IsRunning = (bool)row["IsRunning"],
+                Status = Convert.ToInt32(row["Status"]),
                 LastActiveDate = (DateTime)row["LastActiveDate"],
                 JiraEmail = row["JiraEmail"] == DBNull.Value ? string.Empty : (string)row["JiraEmail"],
                 JiraToken = row["JiraToken"] == DBNull.Value ? string.Empty : (string)row["JiraToken"],

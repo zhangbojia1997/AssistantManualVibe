@@ -76,13 +76,13 @@ namespace RSP.AgileAssistant.Business.Meeting.Vo
         public long CreatedOn { get; set; }
 
         /// <summary>
-        /// Indicates whether the meeting has ended (equivalent to not running).
+        /// Indicates whether the meeting has ended.
         /// </summary>
         public bool IsEnded { get; set; }
 
         /// <summary>
-        /// Indicates whether the meeting is currently running.
+        /// Meeting status value. Mirrors the database-backed status code.
         /// </summary>
-        public bool IsRunning { get; set; }
+        public int Status { get; set; }
     }
 }

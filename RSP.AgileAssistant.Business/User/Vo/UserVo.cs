@@ -22,30 +22,28 @@ namespace RSP.AgileAssistant.Business.User.Vo
         public string? FullName { get; set; }
 
         /// <summary>
-        /// Identifier of the user's default deck (FR-USER-2).
+        /// Identifier of the user's default deck.
         /// </summary>
         public string? DefaultDeckId { get; set; }
 
         /// <summary>
-        /// The user's default group (FR-USER-3).
+        /// The user's default group.
         /// </summary>
         public string? DefaultGroup { get; set; }
 
         /// <summary>
-        /// Email used to authenticate against Jira (FR-USER-4). The Jira API token
-        /// itself is never returned to clients to avoid leaking the secret.
+        /// Email used to authenticate against Jira.
         /// </summary>
         public string? JiraEmail { get; set; }
 
         /// <summary>
-        /// Indicates whether Jira credentials are stored for the user, allowing
-        /// clients to reflect the connection state without exposing the token.
+        /// Indicates whether the user has stored Jira credentials. The actual
+        /// token is never exposed to API clients.
         /// </summary>
         public bool HasJiraCredentials { get; set; }
 
         /// <summary>
-        /// Indicates whether the user's stored defaults should be applied to
-        /// future meetings (FR-USER-5).
+        /// Indicates whether the user's stored defaults should be applied.
         /// </summary>
         public bool UseDefaults { get; set; }
 

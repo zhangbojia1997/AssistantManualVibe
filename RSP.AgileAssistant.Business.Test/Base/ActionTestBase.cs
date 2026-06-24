@@ -2,6 +2,7 @@ using System;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using NUnit.Framework;
+using RSP.AgileAssistant.Business.Meeting.Bo;
 using RSP.Common.DataAccess;
 using RSP.Common.UnitTest;
 
@@ -52,7 +53,7 @@ BEGIN
         DeckId          NVARCHAR(36)    NOT NULL,
         VotingOn        NVARCHAR(36)    NULL,
         VotingRound     NVARCHAR(36)    NULL,
-        IsRunning       BIT             NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_IsRunning DEFAULT (1),
+        Status          INT             NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_Status DEFAULT (1),
         LastActiveDate  DATETIME2(7)    NOT NULL,
         JiraEmail       NVARCHAR(MAX)   NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_JiraEmail DEFAULT (''),
         JiraToken       NVARCHAR(MAX)   NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_JiraToken DEFAULT (''),
@@ -60,6 +61,17 @@ BEGIN
         CreatedOn       BIGINT          NOT NULL,
         CONSTRAINT PK_Vibe_Meeting_Table PRIMARY KEY NONCLUSTERED (Id)
     );
+END
+IF OBJECT_ID('Vibe_Meeting_Table', 'U') IS NOT NULL AND COL_LENGTH('Vibe_Meeting_Table', 'Status') IS NULL
+BEGIN
+    ALTER TABLE Vibe_Meeting_Table
+        ADD Status INT NOT NULL CONSTRAINT DF_Vibe_Meeting_Table_Status DEFAULT (1);
+
+    IF COL_LENGTH('Vibe_Meeting_Table', 'IsRunning') IS NOT NULL
+    BEGIN
+        UPDATE Vibe_Meeting_Table
+        SET Status = CASE WHEN IsRunning = 1 THEN 1 ELSE 0 END;
+    END
 END
 IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'Vibe_Round_Table')
 BEGIN
@@ -242,24 +254,24 @@ IF OBJECT_ID('Vibe_User_Table', 'U') IS NOT NULL DELETE FROM Vibe_User_Table;";
         /// <param name="hostId">Host (owner) identifier.</param>
         /// <param name="topic">Meeting topic.</param>
         /// <param name="deckId">Default deck identifier.</param>
-        /// <param name="isRunning">Whether the meeting is running.</param>
-        protected void InsertMeeting(Guid id, Guid hostId, string topic, Guid deckId, bool isRunning = true)
+        /// <param name="status">Meeting status code.</param>
+        protected void InsertMeeting(Guid id, Guid hostId, string topic, Guid deckId, int status = MeetingBo.StatusRunning)
         {
             IADOConfigurable ado = this.GetADOConfiguration(false);
             using SqlConnection connection = new SqlConnection(ado.ConnectionString);
             connection.Open();
             connection.Execute(
                 @"INSERT INTO Vibe_Meeting_Table
-                    (Id, HostId, Topic, DeckId, VotingOn, VotingRound, IsRunning, LastActiveDate, JiraEmail, JiraToken, JiraConnected, CreatedOn)
+                    (Id, HostId, Topic, DeckId, VotingOn, VotingRound, Status, LastActiveDate, JiraEmail, JiraToken, JiraConnected, CreatedOn)
                   VALUES
-                    (@Id, @HostId, @Topic, @DeckId, NULL, NULL, @IsRunning, SYSUTCDATETIME(), '', '', 0, @CreatedOn);",
+                    (@Id, @HostId, @Topic, @DeckId, NULL, NULL, @Status, SYSUTCDATETIME(), '', '', 0, @CreatedOn);",
                 new
                 {
                     Id = id.ToString(),
                     HostId = hostId.ToString(),
                     Topic = topic,
                     DeckId = deckId.ToString(),
-                    IsRunning = isRunning,
+                    Status = status,
                     CreatedOn = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
                 });
         }

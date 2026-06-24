@@ -42,8 +42,8 @@ namespace RSP.AgileAssistant.Business.Test.Meeting.Actions
         {
             Guid hostId = Guid.NewGuid();
             this.InsertUser(hostId, "host", AccessToken);
-            this.InsertMeeting(Guid.NewGuid(), hostId, "Running", Guid.NewGuid(), isRunning: true);
-            this.InsertMeeting(Guid.NewGuid(), hostId, "Ended", Guid.NewGuid(), isRunning: false);
+            this.InsertMeeting(Guid.NewGuid(), hostId, "Running", Guid.NewGuid(), status: 1);
+            this.InsertMeeting(Guid.NewGuid(), hostId, "Ended", Guid.NewGuid(), status: 0);
 
             this._mockTokenService
                 .Setup(service => service.DecodeToken(AccessToken))

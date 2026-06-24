@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="RSP.AgileAssistant.API/RSP.AgileAssistant.API.csproj" />
+  <Project Path="RSP.AgileAssistant.Business.Test/RSP.AgileAssistant.Business.Test.csproj" />
+  <Project Path="RSP.AgileAssistant.Business/RSP.AgileAssistant.Business.csproj" />
+</Solution>

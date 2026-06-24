@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>RSP.AgileAssistant.API</RootNamespace>
+    <AssemblyName>RSP.AgileAssistant.API</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RSP.Common.MVC" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RSP.AgileAssistant.Business\RSP.AgileAssistant.Business.csproj" />
+  </ItemGroup>
+
+</Project>
